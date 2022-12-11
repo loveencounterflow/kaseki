@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "guy": "^12.3.0",
+    "dayjs": "^1.11.7",
+    "guy": "12.4.0",
     "intertype": "^0.111.0"
   }
 }

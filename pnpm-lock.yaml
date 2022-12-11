@@ -1,11 +1,13 @@
 lockfileVersion: 5.4
 
 specifiers:
-  guy: ^12.3.0
+  dayjs: ^1.11.7
+  guy: 12.4.0
   intertype: ^0.111.0
 
 dependencies:
-  guy: 12.3.0
+  dayjs: 1.11.7
+  guy: 12.4.0_dayjs@1.11.7
   intertype: 0.111.0
 
 packages:
@@ -13,6 +15,10 @@ packages:
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
+    dev: false
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
     dev: false
 
   /emoji-regex/8.0.0:
@@ -32,15 +38,17 @@ packages:
       letsfreezethat: 3.1.0
     dev: false
 
-  /guy/12.3.0:
-    resolution: {integrity: sha512-8SZ9mXvyRxzz1/7DJHwPzfO434YRtqiRnJhZnGre07u9H6beRJZ3nArp1gqJX2wSB6RQnm+xE6kZGGYiVyw15g==}
+  /guy/12.4.0_dayjs@1.11.7:
+    resolution: {integrity: sha512-3xSFvOVViO3DA6PzTYXYsEYqhQg8PcRemnj0BRwlkIpRREGe4/dBON1AHENJdZ/ni+XetTwKyf4iKvvx+xNsww==}
     peerDependencies:
       acorn: ^8.7.1
       acorn-loose: ^8.3.0
       acorn-walk: ^8.2.0
       astring: ^1.8.3
+      dayjs: ^1.11.7
       tmp: ^0.2.1
     dependencies:
+      dayjs: 1.11.7
       intertype-legacy: 7.7.1
       letsfreezethat: 3.1.0
     dev: false
