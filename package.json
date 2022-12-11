@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "guy": "^12.3.0",
+    "intertype": "^0.111.0"
+  }
 }
