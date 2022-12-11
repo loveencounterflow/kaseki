@@ -44,7 +44,10 @@ class Kaseki
     cfg = if cfg? then { @spawn_cfg..., cfg..., } else @spawn_cfg
     R   = CP.spawnSync cmd, parameters, cfg
     if R.status isnt 0
-      throw new R.error if R.error?
+      if R.error?
+        cmd_line = cmd + ' ' + parameters.join ' '
+        throw new Error "^kaseki@1^ when trying to execute #{rpr cmd_line} in directory #{cfg.cwd}," + \
+          " an error occurred: #{R.error}"
       throw new Error R.stderr
     return R.stdout.replace /\n$/, ''
 
