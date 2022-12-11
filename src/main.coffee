@@ -80,11 +80,13 @@ class Kaseki
       switch k
         when 'repository' then R.repo_path      = v
         when 'local-root' then R.checkout_path  = v
-        when 'config-db'  then R.cfg_db         = v
+        when 'config-db'  then R.cfg_path       = v
         when 'checkout', 'parent'
           # '56ae7533ba4c93de3e4cd54378e86019e04484d8 2022-12-11 10:58:54 UTC',
-          R[ "#{k}_id" ] = '???'
-          R[ "#{k}_ts" ] = '???'
+          unless ( g = ( v.match /^(?<id>[0-9a-f]+)\s+(?<ts>.+)$/ )?.groups )?
+            throw new Error "^kaseki@1^ unable to parse ID with timestamp #{rpr v}"
+          R[ "#{k}_id" ] = g.id
+          R[ "#{k}_ts" ] = GUY.datetime.srts_from_isots g.ts
         when 'tags'       then R.tags           = v ### TAINT should split tags, return list ###
         when 'comment'    then R.comment        = v ### TAINT should parse user name ###
         else R[ k ] = v
@@ -110,4 +112,3 @@ if module is require.main then do =>
   help  '^345^', ksk.status()
   info  '^345^', ( k.padEnd 20 ), v for k, v of ksk.status()
   return null
-
