@@ -10,6 +10,7 @@
 
 - [化石 KaSeki](#%E5%8C%96%E7%9F%B3-kaseki)
   - [To Do](#to-do)
+  - [Is Done](#is-done)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -19,6 +20,9 @@
 ## To Do
 
 * **[–]** documentation
-* **[–]** MVP
+
+## Is Done
+
+* **[+]** MVP
 
 
