@@ -32,7 +32,10 @@ class Kaseki
     # super()
     GUY.props.hide @, 'types', get_kaseki_types()
     @cfg        = @types.create.ksk_constructor_cfg cfg
-    GUY.props.hide @, 'spawn_cfg', { cwd: @cfg.checkout_path, }
+    ### TAINT use types ###
+    GUY.props.hide @, 'spawn_cfg',
+      cwd:        @cfg.checkout_path
+      encoding:   'utf-8'
     return undefined
 
   #---------------------------------------------------------------------------------------------------------
@@ -42,8 +45,8 @@ class Kaseki
     R   = CP.spawnSync cmd, parameters, cfg
     if R.status isnt 0
       throw new R.error if R.error?
-      throw new Error R.stderr.toString 'utf-8'
-    return ( R.stdout.toString 'utf-8' ).replace /\n$/, ''
+      throw new Error R.stderr
+    return R.stdout.replace /\n$/, ''
 
   #---------------------------------------------------------------------------------------------------------
   get_fossil_version_text: -> @_spawn 'fossil', 'version'
