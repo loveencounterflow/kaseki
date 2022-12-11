@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "",
+  "sourceRoot": "",
+  "sources": [
+    "../src/main.coffee"
+  ],
+  "names": [],
+  "mappings": "AACA;EAAA;AAAA,MAAA,GAAA,EAAA,KAAA,EAAA,KAAA,EAAA,IAAA,EAAA,IAAA,EAAA,IAAA,EAAA,OAAA,EAAA,GAAA,EAAA,KAAA,EAAA,MAAA,EAAA,GAAA,EAAA,IAAA,EAAA,IAAA,EAAA,OAAA;;;EAIA,GAAA,GAA4B,OAAA,CAAQ,KAAR;;EAC5B,CAAA,CAAE,KAAF,EACE,KADF,EAEE,IAFF,EAGE,IAHF,EAIE,KAJF,EAKE,MALF,EAME,IANF,EAOE,IAPF,EAQE,OARF,CAAA,GAQ4B,GAAG,CAAC,GAAG,CAAC,WAAR,CAAoB,QAApB,CAR5B;;EASA,CAAA,CAAE,GAAF,EACE,OADF,EAEE,IAFF,EAGE,GAHF,CAAA,GAG4B,GAAG,CAAC,GAHhC;AAdA",
+  "sourcesContent": [
+    "\n'use strict'\n\n\n############################################################################################################\nGUY                       = require 'guy'\n{ alert\n  debug\n  help\n  info\n  plain\n  praise\n  urge\n  warn\n  whisper }               = GUY.trm.get_loggers 'KASEKI'\n{ rpr\n  inspect\n  echo\n  log     }               = GUY.trm\n\n"
+  ]
+}
