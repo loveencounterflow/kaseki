@@ -101,17 +101,28 @@ module.exports = { Kaseki, }
 
 ############################################################################################################
 if module is require.main then do =>
-  repo_path     = PATH.resolve PATH.join __dirname, '../../../3rd-party-repos/fossils/datamill-doc-demo.fossil'
-  checkout_path = PATH.resolve PATH.join __dirname, '../../../3rd-party-repos/sqlite-archiver/demo/fossil-unpacked'
-  ksk           = new Kaseki { repo_path, checkout_path, }
-  info  '^345^', rpr ksk.get_fossil_version_text()
-  debug '^345^', ksk._spawn 'ls', '-AlF', '.'
-  debug '^345^', ksk._spawn 'realpath', '.'
-  urge  '^345^', ksk._spawn 'fossil', 'ls'
-  urge  '^345^', ksk.list_file_names()
-  urge  '^345^', ksk.list_file_paths()
-  urge  '^345^', ksk.status_text()
-  urge  '^345^', ksk.fossil_status()
-  help  '^345^', ksk.status()
-  info  '^345^', ( k.padEnd 20 ), v for k, v of ksk.status()
+  FS = require 'node:fs'
+  GUY.temp.with_directory ({ path: repo_home, }) ->
+    GUY.temp.with_directory ({ path: checkout_home, }) ->
+      debug '^34-1^', rpr repo_home
+      debug '^34-1^', rpr checkout_home
+      repo_path     = PATH.join repo_home,     'kaseki-demo.fossil'
+      checkout_path = PATH.join checkout_home
+      ksk           = new Kaseki { repo_path, checkout_path, }
+      # urge  '^34-2^', ksk._spawn_inner 'realpath', [ '.', ], { cwd: repo_home, }
+      # urge  '^34-3^', ksk._spawn_inner 'ls', [ '-AlF', '.', ], { cwd: repo_home, }
+      info  '^34-4^', rpr ksk.get_fossil_version_text()
+      # debug '^34-5^', ksk._spawn 'ls', '-AlF', '.'
+      # debug '^34-6^', ksk._spawn 'realpath', '.'
+      urge  '^34-7^', ksk._spawn 'fossil', 'init', repo_path
+      urge  '^34-7^', ksk._spawn 'fossil', 'open', repo_path
+      urge  '^34-7^', ksk._spawn 'fossil', 'ls'
+      urge  '^34-8^', ksk.list_file_names()
+      urge  '^34-9^', ksk.list_file_paths()
+      urge  '^34-10^', rpr ksk.status_text()
+      urge  '^34-11^', ksk.fossil_status()
+      help  '^34-12^', ksk.status()
+      info  '^34-13^', ( k.padEnd 20 ), v for k, v of ksk.status()
+      urge  '^34-7^', FS.readdirSync repo_home
+      urge  '^34-7^', FS.readdirSync checkout_home
   return null
