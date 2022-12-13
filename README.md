@@ -20,9 +20,22 @@
 ## To Do
 
 * **[–]** documentation
+* **[–]** implement naming (and re-naming?) repo
 
 ## Is Done
 
 * **[+]** MVP
 
 
+<div><ruby>
+東京 <rp>(</rp> <rt>とうきょう</rt><rp>)</rp>
+</ruby></div>
+<div><ruby>
+北 <rp>(</rp><rt>ㄅㄟˇ</rt><rp>)</rp>
+京 <rp>(</rp><rt>ㄐㄧㄥ</rt><rp>)</rp>
+</ruby></div>
+
+<div><ruby>
+<rbc><rb>振</rb><rb>り</rb><rb>仮</rb><rb>名</rb><rp>(</rp></rbc>
+<rtc><rt>ふ</rt><rt>り</rt><rt>が</rt><rt>な</rt><rp>)</rp></rtc>
+</ruby></div>
