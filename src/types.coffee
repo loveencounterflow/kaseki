@@ -42,6 +42,14 @@ get_kaseki_types = ->
       repo_path:          null
       checkout_path:      null
   #.........................................................................................................
+  declare.ksk_ignore_or_error ( x ) -> x in [ 'ignore', 'error', ]
+  #.........................................................................................................
+  declare.ksk_init_cfg
+    fields:
+      if_exists:          'ksk_ignore_or_error'
+    default:
+      if_exists:          'ignore'
+  #.........................................................................................................
   # declare.ksk_spawn_cfg
     # fields:
       # cwd:                      # <string> | <URL> Current working directory of the child process.
