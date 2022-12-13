@@ -11,10 +11,7 @@
 - [化石 KaSeki](#%E5%8C%96%E7%9F%B3-kaseki)
   - [To Do](#to-do)
   - [Is Done](#is-done)
-- [<ruby>化石<rp>(</rp> <rt>かせき</rt><rp>)</rp></ruby>](#ruby%E5%8C%96%E7%9F%B3rprp-rt%E3%81%8B%E3%81%9B%E3%81%8Drtrprpruby)
-- [<ruby>化<rp>(</rp><rt>か</rt><rp>)</rp></ruby><ruby>石<rp>(</rp><rt>せき</rt><rp>)</rp></ruby>](#ruby%E5%8C%96rprprt%E3%81%8Brtrprprubyruby%E7%9F%B3rprprt%E3%81%9B%E3%81%8Drtrprpruby)
-- [<ruby>Ka<rp>(</rp><rt>化</rt><rp>)</rp></ruby><ruby>Seki<rp>(</rp> <rt>石</rt><rp>)</rp></ruby>](#rubykarprprt%E5%8C%96rtrprprubyrubysekirprp-rt%E7%9F%B3rtrprpruby)
-- [<ruby>Ka<rp>(</rp><rt><ruby>化<rp>(</rp><rt>か</rt><rp>)</rp></rt><rp>)</rp></ruby><ruby>Seki<rp>(</rp><rt><ruby>石<rp>(</rp><rt>せき</rt><rp>)</rp></ruby></rt><rp>)</rp></ruby>](#rubykarprprtruby%E5%8C%96rprprt%E3%81%8Brtrprprtrprprubyrubysekirprprtruby%E7%9F%B3rprprt%E3%81%9B%E3%81%8Drtrprprubyrtrprpruby)
+- [<ruby>化石<rp>(</rp> <rt>かせき</rt><rp>)</rp></ruby> <ruby>Ka<rp>(</rp><rt>化</rt><rp>)</rp></ruby><ruby>Seki<rp>(</rp> <rt>石</rt><rp>)</rp></ruby>](#ruby%E5%8C%96%E7%9F%B3rprp-rt%E3%81%8B%E3%81%9B%E3%81%8Drtrprpruby-rubykarprprt%E5%8C%96rtrprprubyrubysekirprp-rt%E7%9F%B3rtrprpruby)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -31,12 +28,7 @@
 * **[+]** MVP
 
 
-# <ruby>化石<rp>(</rp> <rt>かせき</rt><rp>)</rp></ruby>
+# <ruby>化石<rp>(</rp> <rt>かせき</rt><rp>)</rp></ruby> <ruby>Ka<rp>(</rp><rt>化</rt><rp>)</rp></ruby><ruby>Seki<rp>(</rp> <rt>石</rt><rp>)</rp></ruby>
 
-# <ruby>化<rp>(</rp><rt>か</rt><rp>)</rp></ruby><ruby>石<rp>(</rp><rt>せき</rt><rp>)</rp></ruby>
-
-# <ruby>Ka<rp>(</rp><rt>化</rt><rp>)</rp></ruby><ruby>Seki<rp>(</rp> <rt>石</rt><rp>)</rp></ruby>
-
-# <ruby>Ka<rp>(</rp><rt><ruby>化<rp>(</rp><rt>か</rt><rp>)</rp></rt><rp>)</rp></ruby><ruby>Seki<rp>(</rp><rt><ruby>石<rp>(</rp><rt>せき</rt><rp>)</rp></ruby></rt><rp>)</rp></ruby>
 
 
