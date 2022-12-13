@@ -4,7 +4,7 @@
   "description": "Adapter for [Fossil](https://fossil-scm.org) repositories",
   "main": "lib/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo see 'https://github.com/loveencounterflow/hengist/tree/master/dev/kaseki'"
   },
   "keywords": [],
   "author": "",
