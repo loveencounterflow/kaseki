@@ -22,6 +22,7 @@
 
 * **[–]** documentation
 * **[–]** implement naming (and re-naming?) repo
+* **[–]** implement access to [Fossil settings](https://fossil-scm.org/home/doc/trunk/www/settings.wiki)
 * **[–]** allow querying of `.fslckout` DB, especially table `vvar`, there especially `where name =
   'repository'`
 * **[–]** implement local settings, especially for `ignore-glob` (see
