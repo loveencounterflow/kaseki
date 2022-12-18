@@ -91,9 +91,6 @@ class Kaseki
     return R.stdout.replace /\n$/, ''
 
   #---------------------------------------------------------------------------------------------------------
-  get_fossil_version_text: -> @_spawn 'fossil', 'version'
-
-  #---------------------------------------------------------------------------------------------------------
   list_file_names:  -> ( ( @_spawn 'fossil', 'ls' ).split '\n' ).filter ( x ) -> x isnt ''
   list_file_paths:  -> ( PATH.join @cfg.work_path, name for name in @list_file_names() )
   open:             -> @_spawn 'fossil', 'open', @cfg.repo_path
