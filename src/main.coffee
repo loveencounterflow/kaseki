@@ -34,7 +34,7 @@ class Kaseki
     @cfg        = @types.create.ksk_constructor_cfg cfg
     ### TAINT use types ###
     GUY.props.hide @, 'spawn_cfg',
-      cwd:        @cfg.checkout_path
+      cwd:        @cfg.work_path
       encoding:   'utf-8'
     return undefined
 
@@ -56,7 +56,7 @@ class Kaseki
 
   #---------------------------------------------------------------------------------------------------------
   list_file_names:  -> ( ( @_spawn 'fossil', 'ls' ).split '\n' ).filter ( x ) -> x isnt ''
-  list_file_paths:  -> ( PATH.join @cfg.checkout_path, name for name in @list_file_names() )
+  list_file_paths:  -> ( PATH.join @cfg.work_path, name for name in @list_file_names() )
   open:             -> @_spawn 'fossil', 'open', @cfg.repo_path
   ls:               -> @list_file_names()
   change_texts:     -> ( ( @_spawn 'fossil', 'changes' ).split '\n' ).filter ( x ) -> x isnt ''
@@ -92,7 +92,7 @@ class Kaseki
     for k, v of @_status()
       switch k
         when 'repository' then R.repo_path      = v
-        when 'local-root' then R.checkout_path  = v
+        when 'local-root' then R.work_path  = v
         when 'config-db'  then R.cfg_path       = v
         when 'checkout', 'parent'
           unless ( g = ( v.match /^(?<id>[0-9a-f]+)\s+(?<ts>.+)$/ )?.groups )?

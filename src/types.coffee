@@ -13,6 +13,8 @@ GUY                       = require 'guy'
 base_types                = null
 kaseki_types              = null
 misfit                    = Symbol 'misfit'
+PATH                      = require 'node:path'
+join                      = ( P... ) -> PATH.resolve PATH.join P...
 
 
 #-----------------------------------------------------------------------------------------------------------
@@ -36,11 +38,20 @@ get_kaseki_types = ->
   #.........................................................................................................
   declare.ksk_constructor_cfg
     fields:
+      # project_name:       'nonempty.text'
       repo_path:          'nonempty.text'
-      checkout_path:      'nonempty.text'
+      work_path:          'nonempty.text'
     default:
+      # project_name:       null
       repo_path:          null
-      checkout_path:      null
+      work_path:          null
+    # create: ( x ) ->
+    #   return x if x? and not @isa.object x
+    #   R = { @registry.ksk_constructor_cfg.default..., x..., }
+    #     unless work_path
+    #   else
+    #     null
+    #   return R
   #.........................................................................................................
   declare.ksk_ignore_or_error ( x ) -> x in [ 'ignore', 'error', ]
   #.........................................................................................................
