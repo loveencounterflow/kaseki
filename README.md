@@ -22,6 +22,23 @@
 
 * **[–]** documentation
 * **[–]** implement naming (and re-naming?) repo
+* **[–]** allow querying of `.fslckout` DB, especially table `vvar`, there especially `where name =
+  'repository'`
+* **[–]** implement local settings, especially for `ignore-glob` (see
+  [fossil-scm.org](https://www.fossil-scm.org/home/doc/trunk/www/settings.wiki), [SO
+  answer](https://stackoverflow.com/a/23123528/7568091))
+
+  ```bash
+  mkdir .fossil-settings
+  echo '*/*.suo' >> .fossil-settings/ignore-glob
+  echo '*/*/bin/*' >> .fossil-settings/ignore-glob
+  fossil add .fossil-settings
+  ```
+
+* **[–]** jumpstart a 'resonable API' by
+  * **[–]** implement generic command with generic named, positional argument passing (without type
+    checking); return value is raw text of the given `fossil` command, with trailing newlines removed
+  * **[–]** compiling a list of all available `fossil` command line commands
 
 ## Is Done
 
