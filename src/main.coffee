@@ -92,10 +92,10 @@ class Kaseki
     return R.stdout.replace /\n$/, ''
 
   #---------------------------------------------------------------------------------------------------------
+  ls:               -> @list_file_names()
   list_file_names:  -> ( ( @_spawn 'fossil', 'ls' ).split '\n' ).filter ( x ) -> x isnt ''
   list_file_paths:  -> ( PATH.join @cfg.work_path, name for name in @list_file_names() )
   open:             -> @_spawn 'fossil', 'open', @cfg.repo_path
-  ls:               -> @list_file_names()
   change_texts:     -> ( ( @_spawn 'fossil', 'changes' ).split '\n' ).filter ( x ) -> x isnt ''
   has_changes:      -> @change_texts().length > 0
   list_of_changes:  -> ( [ t[ 11 .. ], t[ .. 10 ].trimEnd().toLowerCase(), ] for t in @change_texts() )
