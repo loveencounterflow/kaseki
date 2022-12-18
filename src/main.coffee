@@ -20,6 +20,45 @@ GUY                       = require 'guy'
 { get_kaseki_types }      = require './types'
 CP                        = require 'node:child_process'
 PATH                      = require 'node:path'
+_as_cli_parameters        = null
+
+
+#===========================================================================================================
+do ->
+  { isa,
+    type_of } = get_kaseki_types()
+  #.........................................................................................................
+  _as_cli_parameters = ( P... ) ->
+    ### Given any number of arguments, turn them into a list of strings, potentially usable as the `args`
+    input for NodeJS's `child_process.spawn()` method ('potentially' here meaning that unless checks on
+    parameter names and values are performed, the returned list may not be a suitable input).
+
+    The method allows for any number of positional and named arguments. Positional arguments will result
+    from primitive values, most often texts, numbers, and booleans. Objects with key/value pairs, on the
+    other hand, will be turned into named arguments. Underscores in keys will be replaced by hyphens.
+    Single-letter keys will be prefixed with a single hyphen, longer ones with two hyphens. Empty strings as
+    keys are not allowed.
+
+    While it is possible to nest objects, it's probably a good idea not to use that 'feature' which is not
+    safeguarded against for the sole reason that this routine is not meant for public consumption. ###
+    R = []
+    for p in P
+      switch type = type_of p
+        when 'text'             then R.push p
+        when 'float', 'boolean' then R.push "#{p}"
+        when 'object'
+          for key, value of p
+            throw new Error "^kaseki@1^ detected empty key in #{rpr P}" if key.length is 0
+            key     = key.replace /_/g, '-'
+            prefix  = if key.length is 1 then '-' else '--'
+            R.push prefix + key
+            continue unless value?
+            R.push x for x in _as_cli_parameters value
+        else
+          throw new Error "^kaseki@1^ unable to convert a #{type} to text"
+    return R
+  #.........................................................................................................
+  return null
 
 
 #===========================================================================================================
@@ -111,5 +150,5 @@ class Kaseki
     return R
 
 #===========================================================================================================
-module.exports = { Kaseki, }
+module.exports = { Kaseki, _as_cli_parameters, }
 
