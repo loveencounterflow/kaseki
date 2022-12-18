@@ -84,9 +84,10 @@ class Kaseki
     R   = CP.spawnSync cmd, parameters, cfg
     if R.status isnt 0
       if R.error?
-        cmd_line = cmd + ' ' + parameters.join ' '
-        throw new Error "^kaseki@1^ when trying to execute #{rpr cmd_line} in directory #{cfg.cwd}," + \
-          " an error occurred: #{R.error}"
+        cmd_line = cmd
+        cmd_line = cmd + ' ' + parameters.join ' ' if parameters.length > 0
+        throw new Error "^kaseki@1^ when trying to execute #{rpr cmd_line} in directory #{cfg.cwd}, " + \
+          "an error occurred: #{R.error}"
       throw new Error R.stderr
     return R.stdout.replace /\n$/, ''
 
