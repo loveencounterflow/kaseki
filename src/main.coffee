@@ -92,13 +92,15 @@ class Kaseki
     return R.stdout.replace /\n$/, ''
 
   #---------------------------------------------------------------------------------------------------------
+  _as_lines: ( text ) -> ( text.split '\n' ).filter ( x ) -> x isnt ''
+
+  #---------------------------------------------------------------------------------------------------------
   ls:               -> @list_file_names()
-  list_file_names:  -> ( ( @_spawn 'fossil', 'ls' ).split '\n' ).filter ( x ) -> x isnt ''
+  list_file_names:  -> @lns_ls()
   list_file_paths:  -> ( PATH.join @cfg.work_path, name for name in @list_file_names() )
-  open:             -> @_spawn 'fossil', 'open', @cfg.repo_path
-  change_texts:     -> ( ( @_spawn 'fossil', 'changes' ).split '\n' ).filter ( x ) -> x isnt ''
-  has_changes:      -> @change_texts().length > 0
-  list_of_changes:  -> ( [ t[ 11 .. ], t[ .. 10 ].trimEnd().toLowerCase(), ] for t in @change_texts() )
+  open:             -> @raw_open @cfg.repo_path
+  has_changes:      -> @lns_changes().length > 0
+  list_of_changes:  -> ( [ t[ 11 .. ], t[ .. 10 ].trimEnd().toLowerCase(), ] for t in @lns_changes() )
   changes_by_file:  -> Object.fromEntries @list_of_changes()
   #.........................................................................................................
   ### NOTE first arguments of the methods possibly to be made optional `cfg` objects ###
@@ -163,8 +165,10 @@ do ->
     'tls-config', 'touch', 'ui', 'undo', 'unpublished', 'unset', 'unversioned', 'uv', 'update', 'user',
     'version', 'whatis', 'wiki', 'xdiff', 'zip', ]
   for command in commands then do ( command ) =>
-    name = "fsl_#{command}"
-    Kaseki::[name] = ( P... ) -> @_spawn_inner 'fossil', [ command, ( _as_cli_parameters P... )..., ]
+    raw_name            = "raw_#{command}"
+    lns_name            = "lns_#{command}"
+    Kaseki::[raw_name]  = ( P... ) -> @_spawn_inner 'fossil', [ command, ( _as_cli_parameters P... )..., ]
+    Kaseki::[lns_name]  = ( P... ) -> @_as_lines @[raw_name] P...
   return null
 
 
