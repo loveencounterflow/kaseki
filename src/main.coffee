@@ -62,23 +62,21 @@ do ->
 
 
 #===========================================================================================================
-class Kaseki
+class Intercom
 
   #=========================================================================================================
   # CONSTRUCTION
   #---------------------------------------------------------------------------------------------------------
   constructor: ( cfg ) ->
-    # super()
     GUY.props.hide @, 'types', get_kaseki_types()
-    @cfg        = @types.create.ksk_constructor_cfg cfg
-    ### TAINT use types ###
+    @cfg        = @types.create.ic_constructor_cfg cfg
     GUY.props.hide @, 'spawn_cfg',
       cwd:        @cfg.work_path
       encoding:   'utf-8'
     return undefined
 
   #---------------------------------------------------------------------------------------------------------
-  _spawn: ( cmd, parameters... ) -> @_spawn_inner cmd, parameters
+  spawn: ( cmd, parameters... ) -> @_spawn_inner cmd, parameters
   _spawn_inner: ( cmd, parameters, cfg = null ) ->
     cfg = if cfg? then { @spawn_cfg..., cfg..., } else @spawn_cfg
     R   = CP.spawnSync cmd, parameters, cfg
@@ -94,6 +92,21 @@ class Kaseki
   #---------------------------------------------------------------------------------------------------------
   _as_lines: ( text ) -> ( text.split '\n' ).filter ( x ) -> x isnt ''
 
+
+#===========================================================================================================
+class Kaseki
+
+  #=========================================================================================================
+  # CONSTRUCTION
+  #---------------------------------------------------------------------------------------------------------
+  constructor: ( cfg ) ->
+    # super()
+    GUY.props.hide @, 'types', get_kaseki_types()
+    @cfg        = @types.create.ksk_constructor_cfg cfg
+    ### TAINT use types ###
+    GUY.props.hide @, 'ic', new Intercom { work_path: @cfg.work_path, }
+    return undefined
+
   #---------------------------------------------------------------------------------------------------------
   ls:               -> @list_file_names()
   list_file_names:  -> @lns_ls()
@@ -104,12 +117,12 @@ class Kaseki
   changes_by_file:  -> Object.fromEntries @list_of_changes()
   #.........................................................................................................
   ### NOTE first arguments of the methods possibly to be made optional `cfg` objects ###
-  add:              ( path    ) -> @_spawn 'fossil', 'add', path
-  commit:           ( message ) -> @_spawn 'fossil', 'commit', '-m', message
+  add:              ( path    ) -> @ic.spawn 'fossil', 'add', path
+  commit:           ( message ) -> @ic.spawn 'fossil', 'commit', '-m', message
 
   #---------------------------------------------------------------------------------------------------------
   init: ( cfg ) ->
-    init = => @_spawn 'fossil', 'init', @cfg.repo_path
+    init = => @ic.spawn 'fossil', 'init', @cfg.repo_path
     cfg = @types.create.ksk_init_cfg cfg
     try init() catch error
       if error.message.startsWith 'file already exists:'
@@ -119,7 +132,7 @@ class Kaseki
 
   #---------------------------------------------------------------------------------------------------------
   _status: ->
-    R = @_spawn 'fossil', 'status'
+    R = @ic.spawn 'fossil', 'status'
     return { error: R, } unless ( /^[^\s:]+:\s+\S+/ ).test R
     lines   = R.split '\n'
     entries = ( line.split /^([^:]+):\s+(.*)$/ for line in lines )
@@ -167,8 +180,8 @@ do ->
   for command in commands then do ( command ) =>
     raw_name            = "raw_#{command}"
     lns_name            = "lns_#{command}"
-    Kaseki::[raw_name]  = ( P... ) -> @_spawn_inner 'fossil', [ command, ( _as_cli_parameters P... )..., ]
-    Kaseki::[lns_name]  = ( P... ) -> @_as_lines @[raw_name] P...
+    Kaseki::[raw_name]  = ( P... ) -> @ic._spawn_inner 'fossil', [ command, ( _as_cli_parameters P... )..., ]
+    Kaseki::[lns_name]  = ( P... ) -> @ic._as_lines @[raw_name] P...
   return null
 
 
