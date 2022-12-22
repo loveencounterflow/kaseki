@@ -107,6 +107,9 @@ class Kaseki
     GUY.props.hide @, 'ic', new Intercom { work_path: @cfg.work_path, }
     return undefined
 
+#===========================================================================================================
+class Fossil extends Kaseki
+
   #---------------------------------------------------------------------------------------------------------
   ls:               -> @list_file_names()
   list_file_names:  -> @lns_ls()
@@ -186,5 +189,9 @@ do ->
 
 
 #===========================================================================================================
-module.exports = { Kaseki, _as_cli_parameters, }
+class Git extends Kaseki
+
+
+#===========================================================================================================
+module.exports = { Kaseki, Fossil, Git, _as_cli_parameters, }
 
