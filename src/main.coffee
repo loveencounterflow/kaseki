@@ -227,8 +227,17 @@ class Git extends Kaseki
     #.......................................................................................................
     return R
 
-
-
+  #---------------------------------------------------------------------------------------------------------
+  log: ( cfg ) ->
+    cfg     = @types.create.ksk_git_log_cfg cfg
+    format  = "--pretty=format:'%h%x09%aI%x09%s'"
+    R       = []
+    for line in @ic._as_lines @ic.spawn 'git', 'log', format, '--since', cfg.since
+      [ hash
+        date_iso
+        message ] = line.split '\t'
+      R.push { hash, date_iso, message, }
+    return R
 
 
 

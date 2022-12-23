@@ -81,6 +81,12 @@ get_kaseki_types = ->
       behind_count:   0
       dirty_count:    0
   #.........................................................................................................
+  declare.ksk_git_log_cfg
+    fields:
+      since:          'nonempty.text'
+    default:
+      since:          "1 year ago"
+  #.........................................................................................................
   # declare.ksk_spawn_cfg
     # fields:
       # cwd:                      # <string> | <URL> Current working directory of the child process.
