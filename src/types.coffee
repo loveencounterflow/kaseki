@@ -67,6 +67,20 @@ get_kaseki_types = ->
     default:
       if_exists:          'ignore'
   #.........................................................................................................
+  declare.ksk_git_status_cfg
+    fields:
+      local_branch:   'optional.nonempty.text'
+      remote_branch:  'optional.nonempty.text'
+      ahead_count:    'optional.cardinal'
+      behind_count:   'optional.cardinal'
+      dirty_count:    'optional.cardinal'
+    default:
+      local_branch:   null
+      remote_branch:  null
+      ahead_count:    0
+      behind_count:   0
+      dirty_count:    0
+  #.........................................................................................................
   # declare.ksk_spawn_cfg
     # fields:
       # cwd:                      # <string> | <URL> Current working directory of the child process.
