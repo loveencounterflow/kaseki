@@ -83,27 +83,6 @@ get_kaseki_types = ->
       # shell:                    # <boolean> | <string> If true, runs command inside of a shell. Uses '/bin/sh' on Unix, and process.env.ComSpec on Windows. A different shell can be specified as a string. See Shell requirements and Default Windows shell. Default: false (no shell).
       # windowsVerbatimArguments: # <boolean> No quoting or escaping of arguments is done on Windows. Ignored on Unix. This is set to true automatically when shell is specified and is CMD. Default: false.
       # windowsHide:              # <boolean> Hide the subprocess console window that would normally be created on Windows systems. Default: false.
-
-
-  #     paths:
-  #       public:     PATH.resolve __dirname, '../public'
-  #       favicon:    PATH.resolve __dirname, '../public/favicon.png'
-  #       src:        PATH.resolve __dirname, '../src'
-  #     file_server:
-  #       # Enable or disable accepting ranged requests. Disabling this will not send Accept-Ranges and ignore the
-  #       # contents of the Range request header. defaults to true.
-  #       acceptRanges:     true
-  #       # Set Cache-Control response header, defaults to undefined, see docs: Cache-Control in MDN.
-  #       cacheControl:     undefined
-  #       # Enable or disable etag generation, defaults to true.
-  #       etag:             true
-  #       # Enable or disable Last-Modified header, defaults to true. Uses the file system's last modified value.
-  #       # defaults to true.
-  #       lastModified:     true
-  #       # Set ignore rules. defaults to undefined. ( path ) => boolean
-  #       ignore:           undefined
-  #       # If true, serves after await next(), allowing any downstream middleware to respond first. defaults to false.
-  #       defer:            false
   #...........................................................................................................
   return kaseki_types
 
