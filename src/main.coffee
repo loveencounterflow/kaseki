@@ -70,9 +70,15 @@ class Intercom
   constructor: ( cfg ) ->
     GUY.props.hide @, 'types', get_kaseki_types()
     @cfg        = @types.create.ic_constructor_cfg cfg
+    my_env      =
+      LANG:       'C'
+      LANGUAGE:   'C'
+      LC_ALL:     'C'
+    env = { process.env..., my_env..., }
     GUY.props.hide @, 'spawn_cfg',
       cwd:        @cfg.work_path
       encoding:   'utf-8'
+      env:        env
     return undefined
 
   #---------------------------------------------------------------------------------------------------------
