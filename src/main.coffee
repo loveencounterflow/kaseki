@@ -212,15 +212,21 @@ class Git extends Kaseki
       tail..., ] = @ic._as_lines @_git_status_sb()
     R = @types.create.ksk_git_status_cfg()
     #.......................................................................................................
-    if ( match = head.match /^## No commits yet on (?<local_branch>.*?)$/ )
+    if ( match = head.match /^## No commits yet on (?<local_branch>.*?)$/ )?
       R.local_branch  = match.groups.local_branch
     #.......................................................................................................
-    else if ( match = head.match /^##\s+(?<local_branch>.*?)\.\.\.(?<remote_branch>\S+).*$/ )
+    else if ( match = head.match /^##\s+(?<local_branch>.*?)\.\.\.(?<remote_branch>\S+).*$/ )?
       R.local_branch  = match.groups.local_branch
       R.remote_branch = match.groups.remote_branch
     #.......................................................................................................
-    else if ( match = head.match /^##\s+(?<local_branch>.*?)$/ )
+    else if ( match = head.match /^##\s+(?<local_branch>.*?)$/ )?
       R.local_branch  = match.groups.local_branch
+    #.......................................................................................................
+    if ( match = head.match /\[.*ahead (?<ahead_count>\d+).*\]$/ )?
+      R.ahead_count = parseInt match.groups.ahead_count, 10
+    #.......................................................................................................
+    if ( match = head.match /\[.*behind (?<behind_count>\d+).*\]$/ )?
+      R.behind_count = parseInt match.groups.behind_count, 10
     #.......................................................................................................
     for line in tail
       R.dirty_count++ if /^(?<code>..)\x20(?<path>.+)$/.test line
